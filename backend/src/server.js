@@ -1,17 +1,24 @@
 import express from "express";
-import {ENV} from "./lib/env.js";
+import { ENV } from "./lib/env.js";
+import { connectDB } from "./lib/db.js";
 
-const app = express()
+const app = express();
 
-console.log(ENV.PORT);
-console.log(ENV.DB_URL);
-
-app.get("/health",(req,res) => {
-  res.status(200).json({msg:"success api is up and running "})
+app.get("/health", (req, res) => {
+  res.status(200).json({ msg: "API is up and running" });
 });
 
-const PORT = process.env.PORT || 3000;
+const startServer = async () => {
+  try {
+    await connectDB();
+    const PORT = ENV.PORT || 3000;
 
-app.listen(PORT, () =>
-  console.log("Server is running on port:", PORT)
-);
+    app.listen(PORT, () => {
+      console.log("🚀 Server running on port:", PORT);
+    });
+  } catch (error) {
+    console.error("Server start failed:", error);
+  }
+};
+
+startServer();
