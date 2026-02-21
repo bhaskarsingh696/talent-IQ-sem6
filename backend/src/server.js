@@ -1,8 +1,12 @@
 import express from "express";
 import { ENV } from "./lib/env.js";
 import { connectDB } from "./lib/db.js";
+import { corsMiddleware } from "./middleware/corsMiddleware.js";
 
 const app = express();
+
+app.use(corsMiddleware);
+app.use(express.json());
 
 app.get("/health", (req, res) => {
   res.status(200).json({ msg: "API is up and running" });
@@ -17,7 +21,7 @@ const startServer = async () => {
       console.log("🚀 Server running on port:", PORT);
     });
   } catch (error) {
-    console.error("Server start failed:", error);
+    console.error("❌Server start failed:", error);
   }
 };
 
