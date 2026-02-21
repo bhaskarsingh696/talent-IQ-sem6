@@ -1,21 +1,24 @@
-import { useEffect } from "react";
-import axiosInstance from "./utils/axios";
-
+import "./App.css"
+import { SignedIn,SignedOut,SignInButton,SignOutButton,UserButton } from "@clerk/clerk-react";
 function App() {
-  useEffect(() => {
-    const testBackend = async () => {
-      try {
-        const res = await axiosInstance.get("/health");
-        console.log("Backend Response:", res.data);
-      } catch (error) {
-        console.error("Error connecting to backend:", error);
-      }
-    };
+  return(
+  <>
+  <h1>
+    Welcome to the app 🙏
+  </h1>
+  <SignedOut>
+    <SignInButton mode="modal">
+      <button> Login </button>
+    </SignInButton>
+  </SignedOut>
 
-    testBackend();
-  }, []);
+  <SignedIn>
+    <SignOutButton />
+  </SignedIn>
 
-  return <h1>Talent IQ Frontend Connected</h1>;
+  <UserButton />
+  </>
+  );
 }
 
 export default App;

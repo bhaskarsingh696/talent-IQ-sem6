@@ -1,9 +1,8 @@
 import express from "express";
-import { protectRoute } from "../middleware/authMiddleware.js";
-import { syncUser } from "../controllers/userController.js";
-
 const router = express.Router();
 
-router.post("/sync", protectRoute, syncUser);
+router.post("/sync", async (req, res) => {
+  res.json({ message: "Sync works" });
+});
 
 export default router;
