@@ -1,12 +1,18 @@
-import { User } from "../models/User.js";
+import User from "../models/User.js";
+import { clerkClient } from "@clerk/express";
 
-export const syncUser = async (req, res) => {
+export const syncUser = async (req, res, next) => {
   try {
-    const { userId, sessionClaims } = req.auth;
+    const { userId } = req.auth;
 
-    const email = sessionClaims?.email;
-    const firstName = sessionClaims?.first_name;
-    const lastName = sessionClaims?.last_name;
+    if (!userId) {
+      return res.status(401).json({ message: "Unauthorized" });
+    }
+
+    // Fetch full user data from Clerk
+    const clerkUser = await clerkClient.users.getUser(userId);
+
+    const email = clerkUser.emailAddresses[0]?.emailAddress;
 
     let user = await User.findOne({ clerkId: userId });
 
@@ -14,13 +20,22 @@ export const syncUser = async (req, res) => {
       user = await User.create({
         clerkId: userId,
         email,
-        firstName,
-        lastName,
+        firstName: clerkUser.firstName,
+        lastName: clerkUser.lastName,
+        imageUrl: clerkUser.imageUrl,
       });
+    } else {
+      user.firstName = clerkUser.firstName;
+      user.lastName = clerkUser.lastName;
+      user.imageUrl = clerkUser.imageUrl;
+      await user.save();
     }
 
-    res.status(200).json(user);
+    res.status(200).json({
+      success: true,
+      user,
+    });
   } catch (error) {
-    res.status(500).json({ message: "User sync failed" });
+    next(error);
   }
 };
