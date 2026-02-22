@@ -1,23 +1,40 @@
-import "./App.css"
-import { SignedIn,SignedOut,SignInButton,SignOutButton,UserButton } from "@clerk/clerk-react";
+import { useEffect } from "react";
+import { useAuth } from "@clerk/clerk-react";
+import axios from "axios";
+
 function App() {
-  return(
-  <>
-  <h1>
-    Welcome to the app 🙏
-  </h1>
-  <SignedOut>
-    <SignInButton mode="modal">
-      <button> Login </button>
-    </SignInButton>
-  </SignedOut>
+  const { isSignedIn, getToken } = useAuth();
 
-  <SignedIn>
-    <SignOutButton />
-  </SignedIn>
+  useEffect(() => {
+    const syncUser = async () => {
+      try {
+        if (isSignedIn) {
+          const token = await getToken();
 
-  <UserButton />
-  </>
+          const res = await axios.post(
+            "https://talent-iq-api.onrender.com/api/users/sync",
+            {},
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
+
+          console.log("User synced:", res.data);
+        }
+      } catch (error) {
+        console.error("Sync failed:", error.response?.data || error.message);
+      }
+    };
+
+    syncUser();
+  }, [isSignedIn, getToken]);
+
+  return (
+    <>
+      <h1>Welcome to the app 🙏</h1>
+    </>
   );
 }
 
