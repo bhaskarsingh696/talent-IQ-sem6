@@ -55,9 +55,10 @@ body {
 
 /* ===== PAGE WRAPPER ===== */
 .page-container {
-  padding: 120px 80px;
-  max-width: 1200px;
-  margin: auto;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* ===== HERO SECTION ===== */

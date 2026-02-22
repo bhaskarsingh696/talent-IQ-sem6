@@ -1,25 +1,34 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { SignedIn, SignedOut } from "@clerk/clerk-react";
-import MainLayout from "./layouts/MainLayout";
+import { SignIn, SignUp } from "@clerk/clerk-react";
+
+import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
-import Dashboard from "./pages/Dashboard";
+import SelectRole from "./pages/SelectRole";
+import StudentDashboard from "./pages/StudentDashboard";
+import InterviewerDashboard from "./pages/InterviewerDashboard";
 
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route element={<MainLayout />}>
-          <Route path="/" element={<Home />} />
+      <Navbar />
 
-          <Route
-            path="/dashboard"
-            element={
-              <SignedIn>
-                <Dashboard />
-              </SignedIn>
-            }
-          />
-        </Route>
+      <Routes>
+        <Route path="/" element={<Home />} />
+
+        {/* Clerk Routes */}
+        <Route
+          path="/login/*"
+          element={<SignIn routing="path" path="/login" />}
+        />
+        <Route
+          path="/register/*"
+          element={<SignUp routing="path" path="/register" />}
+        />
+
+        {/* Role + Dashboards */}
+        <Route path="/select-role" element={<SelectRole />} />
+        <Route path="/dashboard/student" element={<StudentDashboard />} />
+        <Route path="/dashboard/interviewer" element={<InterviewerDashboard />} />
       </Routes>
     </BrowserRouter>
   );

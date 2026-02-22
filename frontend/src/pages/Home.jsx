@@ -1,47 +1,65 @@
-import {
-  SignedIn,
-  SignedOut,
-  SignInButton,
-  SignUpButton,
-  UserButton
-} from "@clerk/clerk-react";
+import { useEffect } from "react";
+import { useAuth } from "@clerk/clerk-react";
+import { useNavigate } from "react-router-dom";
+import axios from "../utils/axios";
 
-function Home() {
+export default function Home() {
+  const { isSignedIn, getToken } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const checkUserRole = async () => {
+      if (isSignedIn) {
+        try {
+          const token = await getToken();
+
+          const res = await axios.get("/api/users/me", {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+
+          if (!res.data.role) {
+            navigate("/select-role");
+          } else if (res.data.role === "interviewer") {
+            navigate("/dashboard/interviewer");
+          } else {
+            navigate("/dashboard/student");
+          }
+        } catch (error) {
+          console.error("Error fetching user:", error);
+        }
+      }
+    };
+
+    checkUserRole();
+  }, [isSignedIn, getToken, navigate]);
+
+  const handleGetStarted = () => {
+    if (!isSignedIn) {
+      navigate("/login");
+    } else {
+      navigate("/select-role");
+    }
+  };
+
   return (
     <div className="page-container">
       <div className="hero">
         <h1 className="hero-title">
-          Master DSA. Track Progress. Get Placed 🚀
+          Realistic Mock Coding Interviews.
         </h1>
 
         <p className="hero-subtitle">
-          Talent IQ helps you structure your preparation
-          and track growth like a real engineer.
+          Create live interview sessions or practice real coding rounds.
         </p>
 
         <div className="hero-buttons">
-          <button className="btn primary">Get Started</button>
-          <button className="btn secondary">Learn More</button>
-        </div>
-      </div>
-
-      <div className="features">
-        <div className="feature-card">
-          <h3>📊 Progress Tracking</h3>
-          <p>Visualize your coding journey.</p>
-        </div>
-
-        <div className="feature-card">
-          <h3>🧠 Smart Practice</h3>
-          <p>Structured problem roadmap.</p>
-        </div>
-
-        <div className="feature-card">
-          <h3>🎯 Placement Focused</h3>
-          <p>Built for product-based companies.</p>
+          <button className="btn primary" onClick={handleGetStarted}>
+            Get Started
+          </button>
         </div>
       </div>
     </div>
   );
 }
-export default Home;
