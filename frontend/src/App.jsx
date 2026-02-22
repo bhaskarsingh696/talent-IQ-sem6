@@ -38,20 +38,37 @@ function App() {
     syncUser();
   }, [isSignedIn, getToken]);
 
-  return (
-    <div style={{ padding: "40px" }}>
+   return (
+  <div className="app-container">
+    <div className="card">
+      <h1 className="title">Talent IQ 🚀</h1>
+
       <SignedOut>
-        <h2>Please Sign In</h2>
-        <SignInButton mode="modal" />
-        <SignUpButton mode="modal" />
+        <p className="subtitle">
+          Sharpen your coding skills and track your progress.
+        </p>
+
+        <div className="button-group">
+          <SignInButton mode="modal">
+            <button className="btn primary">Login</button>
+          </SignInButton>
+
+          <SignUpButton mode="modal">
+            <button className="btn secondary">Register</button>
+          </SignUpButton>
+        </div>
       </SignedOut>
 
       <SignedIn>
-        <h2>Welcome to Talent IQ 🚀</h2>
-        <UserButton />
+        <p className="subtitle">Welcome back 👋</p>
+
+        <div className="user-section">
+          <UserButton />
+        </div>
       </SignedIn>
     </div>
-  );
+  </div>
+);
 }
 
 export default App;
