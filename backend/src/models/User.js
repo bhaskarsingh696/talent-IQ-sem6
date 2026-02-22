@@ -16,10 +16,10 @@ const userSchema = new mongoose.Schema(
     lastName: String,
     imageUrl: String,
     role: {
-      type: String,
-      enum: ["student", "mentor", "admin"],
-      default: "null",
-    },
+  type: String,
+  enum: ["interviewer", "candidate"],
+  default: null,
+   },
   },
   { timestamps: true }
 );
