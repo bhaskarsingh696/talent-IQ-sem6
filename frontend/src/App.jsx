@@ -1,5 +1,12 @@
 import { useEffect } from "react";
-import { useAuth } from "@clerk/clerk-react";
+import {
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  SignUpButton,
+  UserButton,
+  useAuth,
+} from "@clerk/clerk-react";
 import axios from "axios";
 
 function App() {
@@ -32,9 +39,18 @@ function App() {
   }, [isSignedIn, getToken]);
 
   return (
-    <>
-      <h1>Welcome to the app 🙏</h1>
-    </>
+    <div style={{ padding: "40px" }}>
+      <SignedOut>
+        <h2>Please Sign In</h2>
+        <SignInButton mode="modal" />
+        <SignUpButton mode="modal" />
+      </SignedOut>
+
+      <SignedIn>
+        <h2>Welcome to Talent IQ 🚀</h2>
+        <UserButton />
+      </SignedIn>
+    </div>
   );
 }
 
