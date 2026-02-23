@@ -825,3 +825,22 @@ textarea#input {
     align-items: flex-start;
   }
 }
+.inspired-by {
+  text-align: center;
+  margin-top: 40px;
+  padding: 15px;
+  font-size: 14px;
+  color: #555;
+}
+
+.inspired-by a {
+  color: #ffa116;   /* LeetCode orange */
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s ease;
+}
+
+.inspired-by a:hover {
+  color: #e69500;
+  text-decoration: underline;
+}
