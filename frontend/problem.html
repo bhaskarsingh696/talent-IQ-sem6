@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Solve the Two Sum problem on CodeTrack with an online code editor.">
+  <title>Two Sum | CodeTrack</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://unpkg.com/monaco-editor@0.44.0/min/vs/loader.js"></script>
+</head>
+
+<body>
+  <div class="problem-page">
+
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="navbar-inner">
+        <a href="index.html" class="navbar-brand">
+          <span class="brand-mark">&#9670;</span>
+          CodeTrack
+        </a>
+        <div class="nav-links">
+          <a href="dashboard.html" class="nav-link">&#8592; Dashboard</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Problem layout -->
+    <main class="problem-main">
+      <div class="problem-shell">
+
+        <!-- Left: Problem description -->
+        <div class="problem-card">
+          <h2 style="margin:0;">Two Sum</h2>
+          <div class="problem-metadata">
+            <span class="badge badge-easy">Easy</span>
+            <span class="chip-muted">Array</span>
+            <span class="chip-muted">Hash Table</span>
+          </div>
+
+          <div>
+            <h3 class="problem-section-title">Description</h3>
+            <p>Given an array of integers <code>nums</code> and an integer <code>target</code>, return <em>indices of
+                the two numbers such that they add up to target</em>.</p>
+            <p>You may assume that each input would have <strong>exactly one solution</strong>, and you may not use the
+              same element twice.</p>
+            <p>You can return the answer in any order.</p>
+          </div>
+
+          <div>
+            <h3 class="problem-section-title">Example 1</h3>
+            <div
+              style="background:var(--bg-surface-alt); padding:0.75rem 1rem; border-radius:0.5rem; font-size:0.88rem; font-family:ui-monospace,monospace;">
+              <strong>Input:</strong> nums = [2,7,11,15], target = 9<br>
+              <strong>Output:</strong> [0,1]<br>
+              <strong>Explanation:</strong> Because nums[0] + nums[1] == 9, we return [0, 1].
+            </div>
+          </div>
+
+          <div>
+            <h3 class="problem-section-title">Example 2</h3>
+            <div
+              style="background:var(--bg-surface-alt); padding:0.75rem 1rem; border-radius:0.5rem; font-size:0.88rem; font-family:ui-monospace,monospace;">
+              <strong>Input:</strong> nums = [3,2,4], target = 6<br>
+              <strong>Output:</strong> [1,2]
+            </div>
+          </div>
+
+          <div>
+            <h3 class="problem-section-title">Constraints</h3>
+            <ul style="font-size:0.9rem; color:var(--text-muted); padding-left:1.2rem;">
+              <li>2 &le; nums.length &le; 10<sup>4</sup></li>
+              <li>-10<sup>9</sup> &le; nums[i] &le; 10<sup>9</sup></li>
+              <li>-10<sup>9</sup> &le; target &le; 10<sup>9</sup></li>
+              <li>Only one valid answer exists.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Right: Editor -->
+        <div class="problem-card">
+          <div class="code-toolbar">
+            <select id="language">
+              <option value="cpp">C++</option>
+              <option value="java">Java</option>
+            </select>
+            <button class="btn-primary" onclick="runCode()">&#9654; Run Code</button>
+          </div>
+
+          <div class="editor-container">
+            <div id="editor"></div>
+          </div>
+
+          <div class="io-row">
+            <div class="io-block">
+              <span class="io-label">Custom Input</span>
+              <textarea id="input" placeholder="Enter your input here..."></textarea>
+            </div>
+            <div class="io-block">
+              <span class="io-label">Output</span>
+              <div id="output">Output will appear here...</div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /problem-shell -->
+    </main>
+
+  </div>
+
+  <script src="js/editor.js"></script>
+</body>
+
+</html>

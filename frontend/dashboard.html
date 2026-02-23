@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Your CodeTrack dashboard – browse problems, track progress, and keep improving.">
+    <title>Dashboard | CodeTrack</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="dashboard-page">
+
+        <!-- Navbar -->
+        <nav class="navbar">
+            <div class="navbar-inner">
+                <a href="index.html" class="navbar-brand">
+                    <span class="brand-mark">&#9670;</span>
+                    CodeTrack
+                </a>
+                <div class="nav-links">
+                    <a href="dashboard.html" class="nav-link" style="color:var(--primary);">Dashboard</a>
+                    <a href="index.html" class="nav-link">Logout</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Dashboard -->
+        <main class="dashboard-main">
+            <div class="dashboard-shell">
+
+                <!-- Sidebar -->
+                <aside class="sidebar">
+                    <h2 class="sidebar-title">Navigate</h2>
+                    <ul class="sidebar-nav">
+                        <li><a href="#stats" class="sidebar-link is-active">&#128202; Overview</a></li>
+                        <li><a href="#progress" class="sidebar-link">&#128200; Progress</a></li>
+                        <li><a href="#problems" class="sidebar-link">&#128221; Problems</a></li>
+                    </ul>
+                    <div class="sidebar-footer">CodeTrack v1.0</div>
+                </aside>
+
+                <!-- Content -->
+                <div class="dashboard-content">
+
+                    <!-- Header -->
+                    <div class="dashboard-header">
+                        <div>
+                            <h1 class="dashboard-title">Dashboard</h1>
+                            <p class="dashboard-subtitle">Track your problem-solving journey.</p>
+                        </div>
+                    </div>
+
+                    <!-- Stat cards -->
+                    <div class="stat-grid" id="stats">
+                        <div class="stat-card">
+                            <p class="stat-label">Total Solved</p>
+                            <p class="stat-value">4 / 10</p>
+                        </div>
+                        <div class="stat-card">
+                            <p class="stat-label">Easy</p>
+                            <p class="stat-value" style="color:var(--success);">2 / 4</p>
+                        </div>
+                        <div class="stat-card">
+                            <p class="stat-label">Medium</p>
+                            <p class="stat-value" style="color:var(--warning);">1 / 3</p>
+                        </div>
+                    </div>
+
+                    <!-- Progress -->
+                    <div class="progress-section" id="progress">
+                        <h3 style="margin:0;">Progress</h3>
+                        <div class="progress-row">
+                            <span class="progress-label" style="color:var(--success);">Easy</span>
+                            <div class="progress-track">
+                                <div class="progress-fill"
+                                    style="width:50%; background:linear-gradient(90deg,#22c55e,#4ade80);"></div>
+                            </div>
+                            <span class="chip-muted">2 / 4</span>
+                        </div>
+                        <div class="progress-row">
+                            <span class="progress-label" style="color:var(--warning);">Medium</span>
+                            <div class="progress-track">
+                                <div class="progress-fill"
+                                    style="width:33%; background:linear-gradient(90deg,#f97316,#fb923c);"></div>
+                            </div>
+                            <span class="chip-muted">1 / 3</span>
+                        </div>
+                        <div class="progress-row">
+                            <span class="progress-label" style="color:var(--danger);">Hard</span>
+                            <div class="progress-track">
+                                <div class="progress-fill"
+                                    style="width:33%; background:linear-gradient(90deg,#ef4444,#f87171);"></div>
+                            </div>
+                            <span class="chip-muted">1 / 3</span>
+                        </div>
+                    </div>
+
+                    <!-- Problem table -->
+                    <div class="table-card" id="problems">
+                        <h3 style="margin:0 0 0.75rem;">Problem Set</h3>
+                        <div class="table-wrapper">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Title</th>
+                                        <th>Difficulty</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td><a href="problem.html" style="color:var(--primary); font-weight:500;">Two
+                                                Sum</a></td>
+                                        <td><span class="badge badge-easy">Easy</span></td>
+                                        <td><span class="status-pill"
+                                                style="background:#dcfce7; color:#16a34a;">Solved</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td><a href="problem.html"
+                                                style="color:var(--primary); font-weight:500;">Reverse Linked List</a>
+                                        </td>
+                                        <td><span class="badge badge-easy">Easy</span></td>
+                                        <td><span class="status-pill"
+                                                style="background:#dcfce7; color:#16a34a;">Solved</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td><a href="problem.html" style="color:var(--primary); font-weight:500;">Valid
+                                                Parentheses</a></td>
+                                        <td><span class="badge badge-easy">Easy</span></td>
+                                        <td><span class="status-pill">Unsolved</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td><a href="problem.html" style="color:var(--primary); font-weight:500;">Binary
+                                                Search</a></td>
+                                        <td><span class="badge badge-easy">Easy</span></td>
+                                        <td><span class="status-pill">Unsolved</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>5</td>
+                                        <td><a href="problem.html"
+                                                style="color:var(--primary); font-weight:500;">Longest Substring Without
+                                                Repeating Characters</a></td>
+                                        <td><span class="badge badge-medium">Medium</span></td>
+                                        <td><span class="status-pill"
+                                                style="background:#dcfce7; color:#16a34a;">Solved</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>6</td>
+                                        <td><a href="problem.html"
+                                                style="color:var(--primary); font-weight:500;">3Sum</a></td>
+                                        <td><span class="badge badge-medium">Medium</span></td>
+                                        <td><span class="status-pill">Unsolved</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>7</td>
+                                        <td><a href="problem.html"
+                                                style="color:var(--primary); font-weight:500;">Container With Most
+                                                Water</a></td>
+                                        <td><span class="badge badge-medium">Medium</span></td>
+                                        <td><span class="status-pill">Unsolved</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>8</td>
+                                        <td><a href="problem.html" style="color:var(--primary); font-weight:500;">Merge
+                                                K Sorted Lists</a></td>
+                                        <td><span class="badge badge-hard">Hard</span></td>
+                                        <td><span class="status-pill"
+                                                style="background:#dcfce7; color:#16a34a;">Solved</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>9</td>
+                                        <td><a href="problem.html"
+                                                style="color:var(--primary); font-weight:500;">Trapping Rain Water</a>
+                                        </td>
+                                        <td><span class="badge badge-hard">Hard</span></td>
+                                        <td><span class="status-pill">Unsolved</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>10</td>
+                                        <td><a href="problem.html" style="color:var(--primary); font-weight:500;">Median
+                                                of Two Sorted Arrays</a></td>
+                                        <td><span class="badge badge-hard">Hard</span></td>
+                                        <td><span class="status-pill">Unsolved</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div><!-- /dashboard-content -->
+            </div><!-- /dashboard-shell -->
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-inner">
+                <span>&copy; 2026 CodeTrack</span>
+                <span>Happy coding!</span>
+            </div>
+        </footer>
+
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>

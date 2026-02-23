@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Create a free CodeTrack account and start practicing DSA problems.">
+    <title>Register | CodeTrack</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="auth-page">
+
+        <!-- Navbar -->
+        <nav class="navbar">
+            <div class="navbar-inner">
+                <a href="index.html" class="navbar-brand">
+                    <span class="brand-mark">&#9670;</span>
+                    CodeTrack
+                </a>
+                <div class="nav-links">
+                    <a href="login.html" class="nav-link">Login</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Auth form -->
+        <main class="auth-main">
+            <div class="auth-card">
+                <h1 class="auth-title">Create an account</h1>
+                <p class="auth-subtitle">Start solving problems and tracking your progress.</p>
+
+                <form id="registerForm" onsubmit="return false;">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" placeholder="John Doe" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="you@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" placeholder="••••••••" required>
+                    </div>
+                    <button type="submit" class="btn-primary" style="width:100%; margin-top:0.5rem;"
+                        onclick="handleRegister()">Create Account</button>
+                </form>
+
+                <div class="form-footer">
+                    <span>Already have an account?</span>
+                    <a href="login.html" style="color:var(--primary); font-weight:500;">Log in</a>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-inner">
+                <span>&copy; 2026 CodeTrack</span>
+            </div>
+        </footer>
+
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>
