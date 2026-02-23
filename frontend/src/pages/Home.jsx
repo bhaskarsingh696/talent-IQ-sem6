@@ -7,33 +7,45 @@ export default function Home() {
   const { isSignedIn, getToken } = useAuth();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const checkUserRole = async () => {
-      if (isSignedIn) {
-        try {
-          const token = await getToken();
+ useEffect(() => {
+  const checkUserRole = async () => {
+    if (isSignedIn) {
+      try {
+        const token = await getToken();
 
-          const res = await axios.get("/api/users/me", {
+        // 🔥 STEP 1: Sync user to MongoDB
+        await axios.post(
+          "/api/users/sync",
+          {},
+          {
             headers: {
               Authorization: `Bearer ${token}`,
             },
-          });
-
-          if (!res.data.role) {
-            navigate("/select-role");
-          } else if (res.data.role === "interviewer") {
-            navigate("/dashboard/interviewer");
-          } else {
-            navigate("/dashboard/student");
           }
-        } catch (error) {
-          console.error("Error fetching user:", error);
-        }
-      }
-    };
+        );
 
-    checkUserRole();
-  }, [isSignedIn, getToken, navigate]);
+        // 🔥 STEP 2: Now fetch user
+        const res = await axios.get("/api/users/me", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (!res.data.role) {
+          navigate("/select-role");
+        } else if (res.data.role === "interviewer") {
+          navigate("/dashboard/interviewer");
+        } else {
+          navigate("/dashboard/student");
+        }
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    }
+  };
+
+  checkUserRole();
+}, [isSignedIn, getToken, navigate]);
 
   const handleGetStarted = () => {
     if (!isSignedIn) {
